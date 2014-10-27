@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data.SqlClient;
 using ManyConsole;
 using model;
@@ -8,6 +8,7 @@ namespace console {
 	public abstract class DbCommand : ConsoleCommand {
 
 		protected string Server { get; set; }
+        protected string FailoverPartner { get; set; }
 		protected string DbName { get; set; }
 		protected string User { get; set; }
 		protected string Pass { get; set; }
@@ -19,6 +20,7 @@ namespace console {
 			Options = new OptionSet();
 			SkipsCommandSummaryBeforeRunning();
 			HasRequiredOption("s|server=", "server", o => Server = o);
+            HasOption("f|failoverpartner=", "failover partner", o => FailoverPartner = o);
 			HasRequiredOption("b|database=", "database", o => DbName = o);
 			HasOption("u|user=", "user", o => User = o);
 			HasOption("p|pass=", "pass", o => Pass = o);
@@ -38,6 +40,9 @@ namespace console {
 				InitialCatalog = DbName,
 				IntegratedSecurity = String.IsNullOrEmpty(User)
 			};
+            if (!string.IsNullOrEmpty(this.FailoverPartner))
+                builder.FailoverPartner = FailoverPartner;
+
 			if (!builder.IntegratedSecurity){
 				builder.UserID = User;
 				builder.Password = Pass;
@@ -48,6 +53,5 @@ namespace console {
 			};
 			
 		}
-
 	}
 }

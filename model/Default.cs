@@ -1,4 +1,4 @@
-﻿namespace model {
+namespace model {
 	public class Default {
 		public string Name;
 		public string Value;

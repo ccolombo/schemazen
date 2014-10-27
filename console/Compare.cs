@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ManyConsole;
 using model;
 using NDesk.Options;

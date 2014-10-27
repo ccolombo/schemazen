@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace model {
 	public class Routine {

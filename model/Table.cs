@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -22,7 +22,7 @@ namespace model {
 		public ColumnList Columns = new ColumnList();
 		public List<Constraint> Constraints = new List<Constraint>();
 		public string Name;
-		public string Owner;
+		public string Owner;    // schema
 
 		public Table(string owner, string name) {
 			Owner = owner;
